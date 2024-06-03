@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "pageObejcts-chrome": "npx playwright test example.spec.ts --project=chromium",
+    "pageObejcts-firefox": "npx playwright test example.spec.ts --project=firefox",
+    "pageObejcts-all": "npm run pageObejcts-chrome && npm run pageObejcts-firefox"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
