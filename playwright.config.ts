@@ -37,7 +37,17 @@ export default defineConfig({
   projects: [
     {
       name: 'setup',
-      testMatch: 'auth.setups.ts'
+      testMatch: 'auth.setup.ts'
+    },
+    {
+      name: 'articleSetup',
+      testMatch: 'newArticle.setup.ts',
+      dependencies: ['setup'],
+      teardown: 'articleCleanUp'
+    },
+    {
+      name: 'articleCleanUp',
+      testMatch: 'articleCleanUp.setup.ts'
     },
 
     {
@@ -57,6 +67,13 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'], storageState: '.auth/user.json' },
       dependencies: ['setup']
     },
+    {
+      name: 'newArticleLike',
+      testMatch: 'likeCounter.spec.ts',
+      use: { ...devices['Desktop Chrome'], storageState: '.auth/user.json' },
+      dependencies: ['articleSetup']
+    },
+
 
     /* Test against mobile viewports. */
     // {
