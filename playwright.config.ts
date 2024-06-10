@@ -32,6 +32,8 @@ export default defineConfig({
       'Authorization': `Token ${process.env.ACCESS_TOKEN}`
     }
   },
+  globalSetup: require.resolve('../PW-APITEST-APP/global-setup.ts'),
+  globalTeardown: require.resolve('../PW-APITEST-APP/global-teardown.ts'),
 
   /* Configure projects for major browsers */
   projects: [
@@ -49,30 +51,38 @@ export default defineConfig({
       name: 'articleCleanUp',
       testMatch: 'articleCleanUp.setup.ts'
     },
-
+    {
+      name: 'likeCounter',
+      testMatch: 'likeCounter.spec.ts',
+      use: { ...devices['Desktop Chrome'], storageState: '.auth/user.json' },
+      dependencies: ['articleSetup']
+    },
+    {
+      name: 'globalLikeCounter',
+      testMatch: 'globalLikeCounter.spec.ts',
+      use: { ...devices['Desktop Chrome'], storageState: '.auth/user.json' }
+    },
     {
       name: 'chromium',
+      testIgnore: 'likeCounter.spec.ts',
       use: { ...devices['Desktop Chrome'], storageState: '.auth/user.json' },
       dependencies: ['setup']
     },
 
     {
       name: 'firefox',
+      testIgnore: 'likeCounter.spec.ts',
       use: {...devices['Desktop Firefox'], storageState: '.auth/user.json'},
       dependencies: ['setup']
     },
 
     {
       name: 'webkit',
+      testIgnore: 'likeCounter.spec.ts',
       use: { ...devices['Desktop Safari'], storageState: '.auth/user.json' },
       dependencies: ['setup']
-    },
-    {
-      name: 'newArticleLike',
-      testMatch: 'likeCounter.spec.ts',
-      use: { ...devices['Desktop Chrome'], storageState: '.auth/user.json' },
-      dependencies: ['articleSetup']
-    },
+    }
+
 
 
     /* Test against mobile viewports. */

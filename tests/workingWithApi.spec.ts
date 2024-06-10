@@ -61,8 +61,8 @@ test('create article', async ({page,request}) =>{
   await page.getByRole('textbox',{name:"Enter tags"}).fill('automation test')
   await page.getByRole('button',{name:'Publish Article'}).click()
 
-//API没有精准匹配
-  const insertArticleResponse = await page.waitForResponse('https://conduit-api.bondaracademy.com/api/articles/')
+
+  const insertArticleResponse = await page.waitForResponse('https://conduit-api.bondaracademy.com/api/articles/*')
   const insertArticleResponseBody = await insertArticleResponse.json()
   const slugId = insertArticleResponseBody.article.slug
 

@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pageObejcts-chrome": "npx playwright test example.spec.ts --project=chromium",
-    "pageObejcts-firefox": "npx playwright test example.spec.ts --project=firefox",
-    "pageObejcts-all": "npm run pageObejcts-chrome && npm run pageObejcts-firefox"
+    "pageObejcts-chrome": "npx playwright test workingWithApi.spec.ts --project=chromium",
+    "pageObejcts-firefox": "npx playwright test workingWithApi.spec.ts --project=firefox",
+    "pageObejcts-all": "npm run pageObejcts-chrome && npm run pageObejcts-firefox",
+    "pageObejcts-likeCounter-ui": "npx playwright test --project=likeCounter --ui",
+    "pageObejcts-globalLikeCounter": "npx playwright test --project=globalLikeCounter"
   },
   "keywords": [],
   "author": "",
